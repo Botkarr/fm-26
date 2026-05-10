@@ -1,0 +1,441 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 1rem;
+  /* iOS Liquid Glass — translucent surfaces over a vivid backdrop */
+  --background: oklch(0.16 0.04 260);
+  --foreground: oklch(0.97 0.01 240);
+  /* Card / popover / secondary / muted are translucent so backdrop-blur shows the colorful bg */
+  --card: oklch(0.98 0.01 240 / 0.08);
+  --card-foreground: oklch(0.97 0.01 240);
+  --popover: oklch(0.18 0.04 260 / 0.85);
+  --popover-foreground: oklch(0.97 0.01 240);
+  --primary: oklch(0.74 0.19 55);
+  --primary-foreground: oklch(0.15 0.02 260);
+  --secondary: oklch(0.98 0.01 240 / 0.10);
+  --secondary-foreground: oklch(0.97 0.01 240);
+  --muted: oklch(0.98 0.01 240 / 0.06);
+  --muted-foreground: oklch(0.78 0.02 250);
+  --accent: oklch(0.7 0.17 230);
+  --accent-foreground: oklch(0.15 0.02 260);
+  --destructive: oklch(0.66 0.22 25);
+  --destructive-foreground: oklch(0.98 0.01 240);
+  --border: oklch(1 0 0 / 0.14);
+  --input: oklch(1 0 0 / 0.10);
+  --ring: oklch(0.74 0.19 55);
+  --pitch: oklch(0.42 0.14 145);
+  --win: oklch(0.78 0.18 150);
+  --draw: oklch(0.82 0.14 85);
+  --loss: oklch(0.7 0.22 25);
+  --sidebar-bg: oklch(0.98 0.01 240 / 0.06);
+  --header-bg: oklch(0.98 0.01 240 / 0.08);
+  --glass-blur: saturate(180%) blur(22px);
+  --glass-highlight: inset 0 1px 0 0 oklch(1 0 0 / 0.18), inset 0 0 0 1px oklch(1 0 0 / 0.04);
+  --glass-shadow: 0 8px 32px -8px oklch(0 0 0 / 0.45);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html, body {
+    color: var(--color-foreground);
+    min-height: 100%;
+  }
+
+  /* Vivid iOS-style ambient backdrop with floating color blobs */
+  body {
+    position: relative;
+    background: linear-gradient(180deg, oklch(0.13 0.04 270), oklch(0.10 0.03 260));
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  /* Two fixed, GPU-friendly blob layers behind everything.
+     Only transform is animated → no layout/paint, just compositor work. */
+  body::before,
+  body::after {
+    content: "";
+    position: fixed;
+    inset: -20%;
+    z-index: -1;
+    pointer-events: none;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+  }
+  body::before {
+    background:
+      radial-gradient(40rem 40rem at 20% 30%, oklch(0.55 0.22 295 / 0.55), transparent 60%),
+      radial-gradient(36rem 36rem at 85% 20%, oklch(0.62 0.22 25 / 0.45), transparent 60%);
+    animation: blob-drift-a 28s ease-in-out infinite alternate;
+  }
+  body::after {
+    background:
+      radial-gradient(44rem 44rem at 50% 90%, oklch(0.55 0.20 220 / 0.55), transparent 60%),
+      radial-gradient(32rem 32rem at 90% 80%, oklch(0.65 0.20 160 / 0.40), transparent 65%);
+    animation: blob-drift-b 36s ease-in-out infinite alternate;
+  }
+
+  @keyframes blob-drift-a {
+    0%   { transform: translate3d(0, 0, 0) scale(1); }
+    50%  { transform: translate3d(3%, -2%, 0) scale(1.06); }
+    100% { transform: translate3d(-2%, 2%, 0) scale(1.02); }
+  }
+  @keyframes blob-drift-b {
+    0%   { transform: translate3d(0, 0, 0) scale(1); }
+    50%  { transform: translate3d(-3%, 2%, 0) scale(1.05); }
+    100% { transform: translate3d(2%, -3%, 0) scale(1.03); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body::before, body::after { animation: none; }
+  }
+
+  /* Let the animated body backdrop show through full-page wrappers.
+     Overlays that need dimming use bg-background/XX (with opacity) — those still work. */
+  .min-h-screen.bg-background { background-color: transparent; }
+
+  /* Pitch surface — keep green but glassy */
+  [style*="--pitch"] {
+    backdrop-filter: saturate(160%) blur(8px);
+    -webkit-backdrop-filter: saturate(160%) blur(8px);
+  }
+
+  /* Liquid Glass: retrofit common surface utilities to translucent + blur */
+  .bg-card,
+  .bg-popover,
+  .bg-secondary,
+  .bg-muted,
+  .bg-sidebar,
+  .bg-accent {
+    backdrop-filter: saturate(180%) blur(22px);
+    -webkit-backdrop-filter: saturate(180%) blur(22px);
+    box-shadow: var(--glass-highlight), var(--glass-shadow);
+  }
+
+  /* Softer rounding for the iOS feel */
+  .rounded-md, .rounded-lg, .rounded-xl {
+    border-radius: var(--radius);
+  }
+  .rounded-sm { border-radius: calc(var(--radius) - 0.5rem); }
+  .rounded { border-radius: calc(var(--radius) - 0.4rem); }
+
+  /* Sidebar / header (use inline CSS vars) — give them the same glass treatment */
+  aside, header {
+    backdrop-filter: saturate(180%) blur(22px);
+    -webkit-backdrop-filter: saturate(180%) blur(22px);
+  }
+
+  /* Primary buttons / pills get a subtle glassy gloss */
+  .bg-primary {
+    background-image: linear-gradient(180deg, oklch(1 0 0 / 0.22), oklch(1 0 0 / 0) 55%);
+    box-shadow: inset 0 1px 0 0 oklch(1 0 0 / 0.35), 0 10px 28px -10px oklch(0.74 0.19 55 / 0.55);
+  }
+
+  /* Inputs */
+  input, select, textarea {
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+  }
+
+  /* ──────────────────────────────────────────────────────────────
+     Tactile feedback (iOS-style)
+     Targets:
+       - native interactive elements (button, [role="button"])
+       - explicit glass surfaces (.bg-primary/.bg-secondary/.bg-accent/.bg-muted)
+       - opt-in chips: .glass-chip (kbd inherits via shared.tsx)
+     :where() keeps specificity low so component classes always win.
+     ────────────────────────────────────────────────────────────── */
+  :where(
+    button,
+    [role="button"],
+    a.inline-flex,
+    .bg-primary,
+    .bg-secondary,
+    .bg-accent,
+    .bg-muted,
+    .glass-chip
+  ) {
+    transition:
+      transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter 180ms ease,
+      box-shadow 220ms ease,
+      background-color 180ms ease;
+    transform: translateZ(0);
+  }
+
+  :where(
+    button:hover:not(:disabled),
+    [role="button"]:hover,
+    .bg-primary:hover,
+    .bg-secondary:hover,
+    .bg-accent:hover,
+    .glass-chip:hover
+  ) {
+    filter: brightness(1.06) saturate(1.05);
+    transform: translateY(-1px);
+  }
+
+  :where(
+    button:active:not(:disabled),
+    [role="button"]:active,
+    .bg-primary:active,
+    .bg-secondary:active,
+    .bg-accent:active,
+    .glass-chip:active
+  ) {
+    transform: translateY(0) scale(0.97);
+    filter: brightness(0.97);
+    transition-duration: 90ms;
+  }
+
+  /* Glass chip surface — explicit opt-in class.
+     Apply in markup with `glass-chip` (e.g. on RatingPill, kbd, status badges). */
+  .glass-chip {
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    box-shadow: var(--glass-highlight);
+    contain: layout paint;
+  }
+
+  /* Focus ring — soft iOS halo */
+  :where(button, [role="button"], a):focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px var(--background),
+      0 0 0 4px oklch(from var(--ring) l c h / 0.55);
+  }
+
+  /* ──────────────────────────────────────────────────────────────
+     Low-end fallbacks: kill backdrop-filter and hover/active filter
+     (both force expensive repaints on glass surfaces).
+     Triggered when:
+       - browser lacks backdrop-filter support
+       - user opted into reduced transparency
+     ────────────────────────────────────────────────────────────── */
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    :where(
+      .bg-card, .bg-popover, .bg-secondary, .bg-muted,
+      .bg-sidebar, .bg-accent, aside, header,
+      input, select, textarea, [style*="--pitch"],
+      .glass-chip
+    ) {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+    :where(
+      .bg-card, .bg-popover, .bg-secondary, .bg-muted,
+      .bg-sidebar, .bg-accent, aside, header,
+      input, select, textarea, [style*="--pitch"]
+    ) {
+      background-color: oklch(0.20 0.04 260 / 0.92);
+    }
+    .glass-chip {
+      background-color: oklch(0.26 0.04 260 / 0.95);
+      color: oklch(0.97 0.01 240);
+      border: 1px solid oklch(1 0 0 / 0.10);
+      box-shadow:
+        inset 0 1px 0 0 oklch(1 0 0 / 0.10),
+        0 1px 2px 0 oklch(0 0 0 / 0.35);
+    }
+    .bg-primary {
+      background-image: none;
+      background-color: var(--primary);
+      box-shadow:
+        inset 0 1px 0 0 oklch(1 0 0 / 0.25),
+        0 2px 6px -1px oklch(0.74 0.19 55 / 0.45);
+    }
+    :where(
+      button, [role="button"],
+      .bg-primary, .bg-secondary, .bg-accent,
+      .glass-chip
+    ):where(:hover, :active) {
+      filter: none;
+    }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    :where(
+      .bg-card, .bg-popover, .bg-secondary, .bg-muted,
+      .bg-sidebar, .bg-accent, aside, header,
+      input, select, textarea, [style*="--pitch"],
+      .glass-chip
+    ) {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      background-color: oklch(0.20 0.04 260 / 0.96);
+    }
+    .glass-chip {
+      background-color: oklch(0.26 0.04 260 / 0.98);
+      border: 1px solid oklch(1 0 0 / 0.12);
+      box-shadow:
+        inset 0 1px 0 0 oklch(1 0 0 / 0.10),
+        0 1px 2px 0 oklch(0 0 0 / 0.35);
+    }
+    body::before, body::after { animation: none; opacity: 0.5; }
+  }
+
+  /* Touch / slow-refresh devices: keep transform feedback, drop filter */
+  @media (hover: none), (update: slow) {
+    :where(
+      button, [role="button"],
+      .bg-primary, .bg-secondary, .bg-accent,
+      .glass-chip
+    ):where(:hover, :active) {
+      filter: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where(
+      button, [role="button"], a.inline-flex,
+      .bg-primary, .bg-secondary, .bg-accent, .bg-muted,
+      .glass-chip
+    ) {
+      transition: none;
+      transform: none;
+    }
+    :where(
+      button, [role="button"],
+      .bg-primary, .bg-secondary, .bg-accent,
+      .glass-chip
+    ):where(:hover, :active) {
+      transform: none;
+      filter: none;
+    }
+  }
+}
+
+/* Cup bracket line draw-in animation */
+@keyframes cup-bracket-draw {
+  from {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  to {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.cup-bracket-line {
+  animation: cup-bracket-draw 0.6s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cup-bracket-line {
+    animation: none;
+  }
+}
