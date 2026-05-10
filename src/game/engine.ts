@@ -471,6 +471,7 @@ export function playRound(state: SeasonState): SeasonState {
  * a user kupameccse már `played: true` (de a többi még nem) — akkor csak a többit szimulálja.
  *
  * Ezt a függvényt a playRound (sim mode) használja a teljes forduló lefuttatására.
+ * TODO: szimulálás helyett meccs lejátszásának lehetősége
  */
 export function progressCupAfterLeagueRound(state: SeasonState, playedRound: number): SeasonState {
   if (state.cup.currentStage === "done") return state;

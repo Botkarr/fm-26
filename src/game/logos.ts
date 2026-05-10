@@ -1,5 +1,4 @@
 // Team crest images mapped by team id.
-// Sources: hu.wikipedia.org / en.wikipedia.org / Wikimedia Commons.
 // NB I
 import debrecen from "@/assets/logos/debrecen.png";
 import diosgyor from "@/assets/logos/diosgyor.png";
