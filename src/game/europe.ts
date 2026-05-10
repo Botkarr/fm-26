@@ -16,16 +16,18 @@ import type { Tactics } from "./tactics";
  * erősség-alapú szimulációval játszanak (nincs squad-juk).
  * ============================================================ */
 
-export type EuropeCompetition = "cl" | "el";
+export type EuropeCompetition = "cl" | "el" | "co";
 
 export const EUROPE_LABEL: Record<EuropeCompetition, string> = {
   cl: "Bajnokok Ligája",
   el: "Európa Liga",
+  co: "Konferencia Liga",
 };
 
 export const EUROPE_SHORT: Record<EuropeCompetition, string> = {
   cl: "BL",
   el: "EL",
+  co: "KL",
 };
 
 export type EuropeStage = "group" | "sf" | "final" | "done";
